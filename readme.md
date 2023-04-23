@@ -209,10 +209,11 @@ aut account balance <_addr>
 Check the newton balance of an account: 
 aut account balance --ntn <_addr>
 
-Create account using aut
+Create account using aut. This will create key file and give you your address. 
 aut account new
 
-
+Then we have to sign-message in the form with below code in order to get private key. Change the filename with your specific file name.
+aut account sign-message "I have read and agree to comply with the Piccadilly Circus Games Competition Terms and Conditions published on IPFS with CID QmVghJVoWkFPtMBUcCiqs7Utydgkfe19wkLunhS5t57yEu" --keyfile /root/.autonity/keystore/filename
 
 Fund the account
 https://faucet.autonity.org/
