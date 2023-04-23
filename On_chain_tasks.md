@@ -22,16 +22,20 @@ Note that if a validator is onboarded before the Round start time the 50 points 
 
 # Step 1. Generate a cryptographic proof of node ownership 
 This must be performed on the host machine running the Autonity Go Client, using the autonity genEnodeProof command:<br>
+<NODE_KEY_PATH> should be changed with the node key path that created in previous steps. <br>
+<TREASURY_ACCOUNT_ADDRESS> should be changed with your account address <br>
+
 ```
 autonity genEnodeProof --nodekey <NODE_KEY_PATH> <TREASURY_ACCOUNT_ADDRESS>
 ```
 
 the proof can be generated as follows:<br>
+<TREASURY_ACCOUNT_ADDRESS> should be changed with your account address <br>
+
 ```
 docker run -t -i --volume $(pwd)/autonity-chaindata:/autonity-chaindata --name autonity-proof --rm ghcr.io/autonity/autonity:latest genEnodeProof --nodekey ./autonity-chaindata/autonity/nodekey <TREASURY_ACCOUNT_ADDRESS>
 ```
 
-where - <NODE_KEY_PATH>: is the path to the private key file of the P2P node key (by default within the autonity subfolder of the --datadir specified when running the node. (For setting the data directory see How to Run Autonity .) - <TREASURY_ACCOUNT_ADDRESS>: is treasury account address (i.e. the address you are using to submit the registration transaction from the local machine).
 You should see something like this:
 
 ![image](https://user-images.githubusercontent.com/106930902/233868401-7b939b16-1a79-4382-9140-78cbc54483ba.png)
