@@ -1,4 +1,12 @@
-<h1 align="center"> Autonity - Piccadilly Games Guide </h1>
+<h1 align="center"> Autonity - Piccadilly Games R2 Guide </h1>
+
+![image](https://user-images.githubusercontent.com/106930902/233866088-85068fd1-a996-499e-9737-51cab182046b.png)
+
+Start Time: April 24th 2023 00:00:00 UTC
+Duration: 4 weeks
+Theme: Node infrastructure
+
+In order to get more info about tasks, visit: https://game.autonity.org/round-2/
 
 ## Requirements
 
