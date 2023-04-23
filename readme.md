@@ -1,3 +1,8 @@
+Autonity - Piccadilly Games
+
+
+
+
 ##Requirements
 
 #Hardware 
@@ -168,3 +173,44 @@ exit with CTRL + A + D ( Dont use CTRL + C)
 
 in order to get back to node logs, you should enter below code: 
 screen -r node
+
+Setup the Autonity Utility Tool (aut)
+apt install pipx
+apt install python3-pip
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
+python3 -m pip install --user --upgrade pipx
+apt install python3.8-venv
+
+We have to reboot in order to run pipx command. 
+
+sudo reboot
+
+Then download aut 
+
+pipx install git+https://github.com/autonity/aut.git
+
+Edit file .autrc with below command;
+
+nano /root/.autrc
+
+[aut]
+rpc_endpoint=https://rpc1.<NETWORK_NAME>.autonity.org
+
+If you are able to write below code your setup is completed.
+aut node info
+
+Create account using aut
+aut account new
+
+Fund the account
+https://faucet.autonity.org/
+![image](https://user-images.githubusercontent.com/106930902/233856072-0cbeafb5-bd48-4b1a-b092-0a5d2c458346.png)
+
+
+Register to game from the below link;
+https://game.autonity.org/incentive-game-forms-frontend/registration.html
+
+
+
+
