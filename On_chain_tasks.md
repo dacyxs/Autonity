@@ -49,7 +49,7 @@ The url is returned in the admin_enode field.
 ```
 aut validator compute-address <admin_enode>
 ```
-Make a note of this identifier that return to you.
+Make a note of this identifier that return to you. This is the unique code for your validator. 
 ![image](https://user-images.githubusercontent.com/106930902/233868590-7a9c2c15-a421-4837-993c-7d87bde03b2e.png)
 
 # Step 3. Submit the registration transaction. 
