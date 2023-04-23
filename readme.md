@@ -2,10 +2,10 @@
 
 ![image](https://user-images.githubusercontent.com/106930902/233866088-85068fd1-a996-499e-9737-51cab182046b.png)
 
-<h1 align="center">Start Time: April 24th 2023 00:00:00 UTC<br></h1>
-<h1 align="center"Duration: 4 weeks<br></h1>
-<h1 align="center"Theme: Node infrastructure<br></h1>
-<h1 align="center"In order to get more info about tasks, visit: https://game.autonity.org/round-2/<br></h1>
+Start Time: April 24th 2023 00:00:00 UTC<br></h1>
+<h1 align="center">Duration: 4 weeks<br></h1>
+<h1 align="center">Theme: Node infrastructure<br></h1>
+<h1 align="center">In order to get more info about tasks, visit: https://game.autonity.org/round-2/<br></h1>
 
 ## Requirements
 
