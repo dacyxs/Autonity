@@ -50,24 +50,44 @@ sudo ufw reload
 ```
 
 # Update the Server
-```sudo apt-get update && sudo apt-get upgrade```
+```
+sudo apt-get update && sudo apt-get upgrade
+```
 
 # Install the necessary packages to allow apt to use a repository over HTTPS:
-```sudo apt-get install apt-transport-https ca-certificates curl software-properties-common```
+```
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+```
 
 # install git 
-```sudo apt-get install git```
+```
+sudo apt-get install git
+```
 
 # install golang
-```wget https://golang.org/dl/go1.17.4.linux-amd64.tar.gz```
-```sudo tar -C /usr/local -xzf go1.17.4.linux-amd64.tar.gz```
-```export PATH=$PATH:/usr/local/go/bin```
-```source ~/.profile```
-```go version```
+```
+wget https://golang.org/dl/go1.17.4.linux-amd64.tar.gz
+```
+```
+sudo tar -C /usr/local -xzf go1.17.4.linux-amd64.tar.gz
+```
+```
+export PATH=$PATH:/usr/local/go/bin
+```
+```
+source ~/.profile
+```
+```
+go version
+```
 
 # install c compiler
-```sudo apt-get install build-essential```
-```gcc --version```
+```
+sudo apt-get install build-essential
+```
+```
+gcc --version
+```
 
 
 # Installing the Docker image
@@ -84,11 +104,15 @@ sudo systemctl enable docker
 ```
 
 # Verify that Docker is installed correctly by running the hello-world container:
-```sudo docker run hello-world```
+```
+sudo docker run hello-world
+```
 
 # To limit the size of the log files, add the following to the file /etc/docker/daemon.json
 
-```nano /etc/docker/daemon.json```
+```
+nano /etc/docker/daemon.json
+```
 ```
 {
   "log-driver": "json-file",
@@ -102,31 +126,46 @@ Press CTRL + X Then Y to save and quit.
 
 # Restart the Docker service to ensure the change is reflected:
 
-```sudo systemctl restart docker```
+```
+sudo systemctl restart docker
+```
 
 # Download latest stable version. 
-```wget https://github.com/autonity/autonity/releases/download/v0.10.1/autonity-linux-amd64-0.10.1.tar.gz```
+```
+wget https://github.com/autonity/autonity/releases/download/v0.10.1/autonity-linux-amd64-0.10.1.tar.gz
+```
 
 # Extract the file after download is completed.
-```tar -xzvf autonity-linux-amd64-0.10.1.tar.gz```
+```
+tar -xzvf autonity-linux-amd64-0.10.1.tar.gz
+```
 
 # (Optional) Copy the binary to /usr/local/bin so it can be accessed by all users, or other location in your PATH :
 cd build/bin
-```sudo cp -r autonity /usr/local/bin/autonity```
+```
+sudo cp -r autonity /usr/local/bin/autonity
+```
 
 
 # Pull the Autonity Go Client image from the Github Container Registry:
 
-```docker pull ghcr.io/autonity/autonity:latest```
+```
+docker pull ghcr.io/autonity/autonity:latest
+```
 
-# Verify the authenticity of the Autonity Docker images against the official image digests 
+# Verify the authenticity of the Autonity Docker images against the official image digests. Output should be as followed.
+```
 docker images --digests ghcr.io/autonity/autonity
-REPOSITORY                               TAG       DIGEST                                                                    IMAGE ID       CREATED        SIZE
-ghcr.io/autonity/autonity                latest    sha256:0eb561ce19ed3617038b022db89586f40abb9580cb0c4cd5f28a7ce74728a3d4   3375da450343   3 weeks ago    51.7MB
+```
+
+![image](https://user-images.githubusercontent.com/106930902/233865723-cde2fe5d-88bf-4b58-9a3b-f591a81ae3d0.png)
 
 
 # Verify the installation. You will get below output;
-```./autonity version```
+```
+./autonity version
+```
+
 Autonity
 Version: 0.10.1
 Architecture: amd64
@@ -137,7 +176,9 @@ GOPATH=
 GOROOT=/usr/local/go
 
 #If using Docker, the setup of the image can be verified with:
-```docker run --rm ghcr.io/autonity/autonity:latest version```
+```
+docker run --rm ghcr.io/autonity/autonity:latest version
+```
 
 
 
@@ -153,15 +194,21 @@ apt install python3.8-venv
 
 # We have to reboot in order to run pipx command. 
 
-```sudo reboot```
+```
+sudo reboot
+```
 
 # Then download aut 
 
-```pipx install git+https://github.com/autonity/aut.git```
+```
+pipx install git+https://github.com/autonity/aut.git
+```
 
 # Edit file .autrc with below command;
 
-```nano /root/.autrc```
+```
+nano /root/.autrc
+```
 
 ```
 [aut]
@@ -170,7 +217,9 @@ rpc_endpoint = https://rpc1.piccadilly.autonity.org/
 
 #Run Autonity (binary or source code install)
 
-```mkdir autonity-chaindata```
+```
+mkdir autonity-chaindata
+```
 
 #First create a new screen
 ```
@@ -208,25 +257,39 @@ docker run \
 exit with CTRL + A + D ( Dont use CTRL + C)
 
 # in order to get back to node logs, you should enter below code: 
-```screen -r node```
+```
+screen -r node
+```
 
 # If you are able to write below code your setup is completed.
-```aut node info```
+```
+aut node info
+```
 
 # Get the block number:
-```aut block height```
+```
+aut block height
+```
 
 # Check the auton balance of an account:
-```aut account balance <_addr>```
+```
+aut account balance <_addr>
+```
 
 # Check the newton balance of an account: 
-```aut account balance --ntn <_addr>```
+```
+aut account balance --ntn <_addr>
+```
 
 # Create account using aut. This will create key file and give you your address. 
-```aut account new```
+```
+aut account new
+```
 
 # Then we have to sign-message in the form with below code in order to get private key. Change the filename with your specific file name.
-```aut account sign-message "I have read and agree to comply with the Piccadilly Circus Games Competition Terms and Conditions published on IPFS with CID QmVghJVoWkFPtMBUcCiqs7Utydgkfe19wkLunhS5t57yEu" --keyfile /root/.autonity/keystore/filename```
+```
+aut account sign-message "I have read and agree to comply with the Piccadilly Circus Games Competition Terms and Conditions published on IPFS with CID QmVghJVoWkFPtMBUcCiqs7Utydgkfe19wkLunhS5t57yEu" --keyfile /root/.autonity/keystore/filename
+```
 
 # Fund the account
 https://faucet.autonity.org/
@@ -235,6 +298,15 @@ https://faucet.autonity.org/
 # Register to game from the below link;
 https://game.autonity.org/incentive-game-forms-frontend/registration.html
 
+
+# Original document: 
+https://docs.autonity.org/
+https://game.autonity.org/
+
+# Official links of the project: 
+https://discord.gg/autonity
+https://twitter.com/autonity_
+https://autonity.org/
 
 # Follow me @
 https://twitter.com/Dacxys
