@@ -1,6 +1,4 @@
 <h1 align="center"> Autonity - Piccadilly Games Guide </h1>
-<div align="center">
-
 
 ## Requirements
 
