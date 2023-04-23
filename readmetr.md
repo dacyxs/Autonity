@@ -312,6 +312,9 @@ https://discord.gg/autonity
 https://twitter.com/autonity_
 https://autonity.org/
 
+# Block Explorer
+https://piccadilly.autonity.org/
+
 # Follow me @
 https://twitter.com/Dacxys
 
