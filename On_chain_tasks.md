@@ -1,6 +1,6 @@
-## Onboard validator<br>
-## Register as a Validator<br>
-# Prerequisites <br>
+# Onboard validator<br>
+# Register as a Validator<br>
+## Prerequisites <br>
 
 To register a validator you need:<br>
 
@@ -9,7 +9,7 @@ To register a validator you need:<br>
 3)An account that has been funded with auton (to pay for transaction gas costs). Note that this account will become the validator’s treasury account - the account used to manage the validator, that that will also receive the validator’s share of staking rewards.<br>
 4)This guide also assumes that the command-line JSON processor jq is available<br>
 
-# Scoring Rule
+## Scoring Rule
 Every registered participant in this task gets an easy 50 points for managing to get their validator node registered on-chain. <br>
 For the rest of the task, you will get points proportional to your node’s uptime in the tendermint consensus algorithm. <br>
 Your node gets an uptime measure for each epoch, and for each epoch where this measurement is ≥90%, you get 1 point. <br>
