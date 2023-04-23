@@ -1,6 +1,6 @@
-##Onboard validator<br>
-##Register as a Validator<br>
-#Prerequisites <br>
+## Onboard validator<br>
+## Register as a Validator<br>
+# Prerequisites <br>
 
 To register a validator you need:<br>
 
