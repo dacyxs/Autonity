@@ -1,11 +1,10 @@
-Autonity - Piccadilly Games
+<h1 align="center"> Autonity - Piccadilly Games Guide </h1>
+<div align="center">
 
 
+## Requirements
 
-
-##Requirements
-
-#Hardware 
+# Hardware 
 
 To run an Autonity Go Client node, we recommend using a host machine (physical or virtual) with the following minimum specification:
 
