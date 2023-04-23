@@ -30,14 +30,14 @@ If you already followed my previous documentation you can skip to next code.
 autonity genEnodeProof --nodekey <NODE_KEY_PATH> <TREASURY_ACCOUNT_ADDRESS>
 ```
 
-This code will be enough to get signature text. 
+This code will be enough to get signature text.
 <TREASURY_ACCOUNT_ADDRESS> should be changed with your account address <br>
 
 ```
 docker run -t -i --volume $(pwd)/autonity-chaindata:/autonity-chaindata --name autonity-proof --rm ghcr.io/autonity/autonity:latest genEnodeProof --nodekey ./autonity-chaindata/autonity/nodekey <TREASURY_ACCOUNT_ADDRESS>
 ```
 
-You should see something like this:
+You should see something like this(We will use signature text later. Be sure to save it):
 
 ![image](https://user-images.githubusercontent.com/106930902/233868401-7b939b16-1a79-4382-9140-78cbc54483ba.png)
 
