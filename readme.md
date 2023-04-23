@@ -7,6 +7,9 @@ Duration: 4 weeks<br>
 Theme: Node infrastructure<br>
 In order to get more info about tasks, visit: https://game.autonity.org/round-2/<br></h1>
 
+#You can see Turkish Guide @ https://github.com/dacyxs/Autonity/blob/main/readmetr.md
+
+
 ## Requirements
 
 # Hardware 
