@@ -24,12 +24,13 @@ Note that if a validator is onboarded before the Round start time the 50 points 
 This must be performed on the host machine running the Autonity Go Client, using the autonity genEnodeProof command:<br>
 <NODE_KEY_PATH> should be changed with the node key path that created in previous steps. <br>
 <TREASURY_ACCOUNT_ADDRESS> should be changed with your account address <br>
+If you already followed my previous documentation you can skip to next code.
 
 ```
 autonity genEnodeProof --nodekey <NODE_KEY_PATH> <TREASURY_ACCOUNT_ADDRESS>
 ```
 
-the proof can be generated as follows:<br>
+This code will be enough to get signature text. 
 <TREASURY_ACCOUNT_ADDRESS> should be changed with your account address <br>
 
 ```
