@@ -12,7 +12,7 @@ CPU	3.10 GHz with 8 CPU’s	3.10 GHz with 16 CPU’s
 RAM	8GB	16GB
 Storage	1024GB free storage for full nodes and Validators	1024 GB free storage for full nodes and validators
 
-##Network 
+# Network 
 A public-facing internet connection with static IP is required. Incoming traffic must be allowed on the following:
 
 TCP, UDP 30303 for node p2p (DEVp2p) communication.
@@ -32,6 +32,7 @@ sudo ufw reload
 
 Finally, you may need to restart any services that are using the port for the changes to take effect. For example, if you opened port 80 for HTTP traffic, you would need to restart your web server.
 In order to open all related ports you can run below snippet;
+```
 sudo iptables -A INPUT -p tcp --dport 30303 -j ACCEPT
 sudo iptables -A INPUT -p udp --dport 30303 -j ACCEPT
 sudo iptables -A INPUT -p tcp --dport 8545 -j ACCEPT
@@ -44,44 +45,49 @@ sudo ufw allow 8545/tcp
 sudo ufw allow 8546/tcp
 sudo ufw allow 6060/tcp
 sudo ufw reload
+```
 
-Update the Server
-sudo apt-get update && sudo apt-get upgrade
+# Update the Server
+```sudo apt-get update && sudo apt-get upgrade```
 
-Install the necessary packages to allow apt to use a repository over HTTPS:
-sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+# Install the necessary packages to allow apt to use a repository over HTTPS:
+```sudo apt-get install apt-transport-https ca-certificates curl software-properties-common```
 
-install git 
-sudo apt-get install git
+# install git 
+```sudo apt-get install git```
 
-install golang
-wget https://golang.org/dl/go1.17.4.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf go1.17.4.linux-amd64.tar.gz
-export PATH=$PATH:/usr/local/go/bin
-source ~/.profile
-go version
+# install golang
+```wget https://golang.org/dl/go1.17.4.linux-amd64.tar.gz```
+```sudo tar -C /usr/local -xzf go1.17.4.linux-amd64.tar.gz```
+```export PATH=$PATH:/usr/local/go/bin```
+```source ~/.profile```
+```go version```
 
-install c compiler
-sudo apt-get install build-essential
-gcc --version
+# install c compiler
+```sudo apt-get install build-essential```
+```gcc --version```
 
 
-Installing the Docker image
+# Installing the Docker image
+```
 sudo apt install docker.io -y
 sudo systemctl enable --now docker
 systemctl restart docker.service
+```
 
-Once the installation is complete, start the Docker service and enable it to start at boot:
+# Once the installation is complete, start the Docker service and enable it to start at boot:
+```
 sudo systemctl start docker
 sudo systemctl enable docker
+```
 
-Verify that Docker is installed correctly by running the hello-world container:
-sudo docker run hello-world
+# Verify that Docker is installed correctly by running the hello-world container:
+```sudo docker run hello-world```
 
-To limit the size of the log files, add the following to the file /etc/docker/daemon.json
+# To limit the size of the log files, add the following to the file /etc/docker/daemon.json
 
-nano /etc/docker/daemon.json
-
+```nano /etc/docker/daemon.json```
+```
 {
   "log-driver": "json-file",
   "log-opts": {
@@ -89,36 +95,36 @@ nano /etc/docker/daemon.json
     "max-file": "20"
   }
 }
-
+```
 Press CTRL + X Then Y to save and quit.
 
-Restart the Docker service to ensure the change is reflected:
+# Restart the Docker service to ensure the change is reflected:
 
-sudo systemctl restart docker
+```sudo systemctl restart docker```
 
-Download latest stable version. 
-wget https://github.com/autonity/autonity/releases/download/v0.10.1/autonity-linux-amd64-0.10.1.tar.gz
+# Download latest stable version. 
+```wget https://github.com/autonity/autonity/releases/download/v0.10.1/autonity-linux-amd64-0.10.1.tar.gz```
 
-Extract the file after download is completed.
-tar -xzvf autonity-linux-amd64-0.10.1.tar.gz
+# Extract the file after download is completed.
+```tar -xzvf autonity-linux-amd64-0.10.1.tar.gz```
 
-(Optional) Copy the binary to /usr/local/bin so it can be accessed by all users, or other location in your PATH :
+# (Optional) Copy the binary to /usr/local/bin so it can be accessed by all users, or other location in your PATH :
 cd build/bin
-sudo cp -r autonity /usr/local/bin/autonity
+```sudo cp -r autonity /usr/local/bin/autonity```
 
 
-Pull the Autonity Go Client image from the Github Container Registry:
+# Pull the Autonity Go Client image from the Github Container Registry:
 
-docker pull ghcr.io/autonity/autonity:latest
+```docker pull ghcr.io/autonity/autonity:latest```
 
-Verify the authenticity of the Autonity Docker images against the official image digests 
+# Verify the authenticity of the Autonity Docker images against the official image digests 
 docker images --digests ghcr.io/autonity/autonity
 REPOSITORY                               TAG       DIGEST                                                                    IMAGE ID       CREATED        SIZE
 ghcr.io/autonity/autonity                latest    sha256:0eb561ce19ed3617038b022db89586f40abb9580cb0c4cd5f28a7ce74728a3d4   3375da450343   3 weeks ago    51.7MB
 
 
-Verify the installation
-./autonity version
+# Verify the installation. You will get below output;
+```./autonity version```
 Autonity
 Version: 0.10.1
 Architecture: amd64
@@ -128,17 +134,49 @@ Operating System: linux
 GOPATH=
 GOROOT=/usr/local/go
 
-If using Docker, the setup of the image can be verified with:
-docker run --rm ghcr.io/autonity/autonity:latest version
+#If using Docker, the setup of the image can be verified with:
+```docker run --rm ghcr.io/autonity/autonity:latest version```
 
-Run Autonity (binary or source code install)
 
-mkdir autonity-chaindata
 
-First create a new screen
+# Setup the Autonity Utility Tool (aut)
+```
+apt install pipx
+apt install python3-pip
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
+python3 -m pip install --user --upgrade pipx
+apt install python3.8-venv
+```
+
+# We have to reboot in order to run pipx command. 
+
+```sudo reboot```
+
+# Then download aut 
+
+```pipx install git+https://github.com/autonity/aut.git```
+
+# Edit file .autrc with below command;
+
+```nano /root/.autrc```
+
+```
+[aut]
+rpc_endpoint = https://rpc1.piccadilly.autonity.org/
+```
+
+#Run Autonity (binary or source code install)
+
+```mkdir autonity-chaindata```
+
+#First create a new screen
+```
 apt install screen
 screen -S node
+```
 
+```
 docker run \
     -t -i \
     --volume $(pwd)/autonity-chaindata:/autonity-chaindata \
@@ -160,64 +198,39 @@ docker run \
         --ws.addr 0.0.0.0 \
         --ws.api aut,eth,net,txpool,web3,admin  \
         --nat extip:<IP_ADDRESS>
-    
-    Where:
+```
 
-<IP_ADDRESS> is the node’s host IP Address, which can be determined with curl ifconfig.me.
+#   Where: <IP_ADDRESS> is the node’s host IP Address, which can be determined with curl ifconfig.me.
 --piccadilly specifies that the node will use the Piccadilly tesnet. For other tesnets, use the appropriate flag (for example, --bakerloo).
 
 exit with CTRL + A + D ( Dont use CTRL + C)
 
-in order to get back to node logs, you should enter below code: 
-screen -r node
+# in order to get back to node logs, you should enter below code: 
+```screen -r node```
 
-Setup the Autonity Utility Tool (aut)
-apt install pipx
-apt install python3-pip
-python3 -m pip install --user pipx
-python3 -m pipx ensurepath
-python3 -m pip install --user --upgrade pipx
-apt install python3.8-venv
+# If you are able to write below code your setup is completed.
+```aut node info```
 
-We have to reboot in order to run pipx command. 
+# Get the block number:
+```aut block height```
 
-sudo reboot
+# Check the auton balance of an account:
+```aut account balance <_addr>```
 
-Then download aut 
+# Check the newton balance of an account: 
+```aut account balance --ntn <_addr>```
 
-pipx install git+https://github.com/autonity/aut.git
+# Create account using aut. This will create key file and give you your address. 
+```aut account new```
 
-Edit file .autrc with below command;
+# Then we have to sign-message in the form with below code in order to get private key. Change the filename with your specific file name.
+```aut account sign-message "I have read and agree to comply with the Piccadilly Circus Games Competition Terms and Conditions published on IPFS with CID QmVghJVoWkFPtMBUcCiqs7Utydgkfe19wkLunhS5t57yEu" --keyfile /root/.autonity/keystore/filename```
 
-nano /root/.autrc
-
-[aut]
-rpc_endpoint=https://rpc1.<NETWORK_NAME>.autonity.org
-
-If you are able to write below code your setup is completed.
-aut node info
-
-Get the block number:
-aut block height
-
-Check the auton balance of an account:
-aut account balance <_addr>
-
-Check the newton balance of an account: 
-aut account balance --ntn <_addr>
-
-Create account using aut. This will create key file and give you your address. 
-aut account new
-
-Then we have to sign-message in the form with below code in order to get private key. Change the filename with your specific file name.
-aut account sign-message "I have read and agree to comply with the Piccadilly Circus Games Competition Terms and Conditions published on IPFS with CID QmVghJVoWkFPtMBUcCiqs7Utydgkfe19wkLunhS5t57yEu" --keyfile /root/.autonity/keystore/filename
-
-Fund the account
+# Fund the account
 https://faucet.autonity.org/
 ![image](https://user-images.githubusercontent.com/106930902/233856072-0cbeafb5-bd48-4b1a-b092-0a5d2c458346.png)
 
-
-Register to game from the below link;
+# Register to game from the below link;
 https://game.autonity.org/incentive-game-forms-frontend/registration.html
 
 
