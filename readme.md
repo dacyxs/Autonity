@@ -175,7 +175,7 @@ Operating System: linux
 GOPATH=
 GOROOT=/usr/local/go
 
-#If using Docker, the setup of the image can be verified with:
+# If using Docker, the setup of the image can be verified with:
 ```
 docker run --rm ghcr.io/autonity/autonity:latest version
 ```
@@ -215,13 +215,13 @@ nano /root/.autrc
 rpc_endpoint = https://rpc1.piccadilly.autonity.org/
 ```
 
-#Run Autonity (binary or source code install)
+# Run Autonity (binary or source code install)
 
 ```
 mkdir autonity-chaindata
 ```
 
-#First create a new screen
+# First create a new screen
 ```
 apt install screen
 screen -S node
@@ -251,7 +251,7 @@ docker run \
         --nat extip:<IP_ADDRESS>
 ```
 
-#   Where: <IP_ADDRESS> is the node’s host IP Address, which can be determined with curl ifconfig.me.
+# Where: <IP_ADDRESS> is the node’s host IP Address, which can be determined with curl ifconfig.me.
 --piccadilly specifies that the node will use the Piccadilly tesnet. For other tesnets, use the appropriate flag (for example, --bakerloo).
 
 exit with CTRL + A + D ( Dont use CTRL + C)
