@@ -200,6 +200,15 @@ rpc_endpoint=https://rpc1.<NETWORK_NAME>.autonity.org
 If you are able to write below code your setup is completed.
 aut node info
 
+Get the block number:
+aut block height
+
+Check the auton balance of an account:
+aut account balance <_addr>
+
+Check the newton balance of an account: 
+aut account balance --ntn <_addr>
+
 Create account using aut
 aut account new
 
