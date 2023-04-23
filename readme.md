@@ -212,6 +212,8 @@ aut account balance --ntn <_addr>
 Create account using aut
 aut account new
 
+
+
 Fund the account
 https://faucet.autonity.org/
 ![image](https://user-images.githubusercontent.com/106930902/233856072-0cbeafb5-bd48-4b1a-b092-0a5d2c458346.png)
