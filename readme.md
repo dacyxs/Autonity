@@ -38,12 +38,14 @@ sudo iptables -A INPUT -p udp --dport 30303 -j ACCEPT
 sudo iptables -A INPUT -p tcp --dport 8545 -j ACCEPT
 sudo iptables -A INPUT -p tcp --dport 8546 -j ACCEPT
 sudo iptables -A INPUT -p tcp --dport 6060 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 
 sudo ufw allow 30303/tcp
 sudo ufw allow 30303/udp
 sudo ufw allow 8545/tcp
 sudo ufw allow 8546/tcp
 sudo ufw allow 6060/tcp
+sudo ufw allow 22/tcp
 sudo ufw reload
 ```
 
