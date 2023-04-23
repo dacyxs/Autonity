@@ -43,20 +43,26 @@ sudo ufw allow 8546/tcp
 sudo ufw allow 6060/tcp
 sudo ufw reload
 
-Download latest stable version. 
-wget https://github.com/autonity/autonity/releases/download/v0.10.1/autonity-linux-amd64-0.10.1.tar.gz
-
-Extract the file after download is completed.
-tar -xzvf autonity-linux-amd64-0.10.1.tar.gz
-
-(Optional) Copy the binary to /usr/local/bin so it can be accessed by all users, or other location in your PATH :
-sudo cp -r autonity /usr/local/bin/autonity
-
 Update the Server
 sudo apt-get update && sudo apt-get upgrade
 
 Install the necessary packages to allow apt to use a repository over HTTPS:
 sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+
+install git 
+sudo apt-get install git
+
+install golang
+wget https://golang.org/dl/go1.17.4.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.17.4.linux-amd64.tar.gz
+export PATH=$PATH:/usr/local/go/bin
+source ~/.profile
+go version
+
+install c compiler
+sudo apt-get install build-essential
+gcc --version
+
 
 Installing the Docker image
 sudo apt install docker.io -y
@@ -88,6 +94,17 @@ Restart the Docker service to ensure the change is reflected:
 
 sudo systemctl restart docker
 
+Download latest stable version. 
+wget https://github.com/autonity/autonity/releases/download/v0.10.1/autonity-linux-amd64-0.10.1.tar.gz
+
+Extract the file after download is completed.
+tar -xzvf autonity-linux-amd64-0.10.1.tar.gz
+
+(Optional) Copy the binary to /usr/local/bin so it can be accessed by all users, or other location in your PATH :
+cd build/bin
+sudo cp -r autonity /usr/local/bin/autonity
+
+
 Pull the Autonity Go Client image from the Github Container Registry:
 
 docker pull ghcr.io/autonity/autonity:latest
@@ -97,32 +114,9 @@ docker images --digests ghcr.io/autonity/autonity
 REPOSITORY                               TAG       DIGEST                                                                    IMAGE ID       CREATED        SIZE
 ghcr.io/autonity/autonity                latest    sha256:0eb561ce19ed3617038b022db89586f40abb9580cb0c4cd5f28a7ce74728a3d4   3375da450343   3 weeks ago    51.7MB
 
-install git 
-sudo apt-get install git
-
-install golang
-wget https://golang.org/dl/go1.17.4.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf go1.17.4.linux-amd64.tar.gz
-export PATH=$PATH:/usr/local/go/bin
-source ~/.profile
-go version
-
-install c compiler
-sudo apt-get install build-essential
-gcc --version
-
-Clone/Copy the Autonity repo:
-git clone git@github.com:autonity/autonity.git
-
-Enter the autonity directory and build autonity:
-cd autonity
-make autonity
-
-(Optional) Copy the generated binary to /usr/local/bin so it can be accessed by all users, or other location in your PATH :
-sudo cp build/bin/autonity /usr/local/bin/autonity
 
 Verify the installation
-$ ./autonity version
+./autonity version
 Autonity
 Version: 0.10.1
 Architecture: amd64
@@ -133,28 +127,44 @@ GOPATH=
 GOROOT=/usr/local/go
 
 If using Docker, the setup of the image can be verified with:
-$ docker run --rm ghcr.io/autonity/autonity:latest version
+docker run --rm ghcr.io/autonity/autonity:latest version
 
 Run Autonity (binary or source code install)
+
 mkdir autonity-chaindata
-autonity \
-    --datadir ./autonity-chaindata  \
-    --piccadilly  \
-    --http  \
-    --http.addr 0.0.0.0 \
-    --http.api aut,eth,net,txpool,web3,admin  \
-    --http.vhosts \* \
-    --ws  \
-    --ws.addr 0.0.0.0 \
-    --ws.api aut,eth,net,txpool,web3,admin  \
-    --nat extip:<IP_ADDRESS>
+
+First create a new screen
+apt install screen
+screen -S node
+
+docker run \
+    -t -i \
+    --volume $(pwd)/autonity-chaindata:/autonity-chaindata \
+    --publish 8545:8545 \
+    --publish 8546:8546 \
+    --publish 30303:30303 \
+    --publish 30303:30303/udp \
+    --publish 6060:6060 \
+    --name autonity \
+    --rm \
+    ghcr.io/autonity/autonity:latest \
+        --datadir ./autonity-chaindata  \
+        --piccadilly \
+        --http  \
+        --http.addr 0.0.0.0 \
+        --http.api aut,eth,net,txpool,web3,admin  \
+        --http.vhosts \* \
+        --ws  \
+        --ws.addr 0.0.0.0 \
+        --ws.api aut,eth,net,txpool,web3,admin  \
+        --nat extip:<IP_ADDRESS>
     
     Where:
 
 <IP_ADDRESS> is the node’s host IP Address, which can be determined with curl ifconfig.me.
 --piccadilly specifies that the node will use the Piccadilly tesnet. For other tesnets, use the appropriate flag (for example, --bakerloo).
 
-Create a working directory for installing Autonity. For example:
-mkdir autonity-go-client
-cd autonity-go-client
+exit with CTRL + A + D ( Dont use CTRL + C)
 
+in order to get back to node logs, you should enter below code: 
+screen -r node
