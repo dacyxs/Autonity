@@ -213,7 +213,7 @@ sudo reboot
 ```
 git clone https://github.com/autonity/aut.git
 cd aut
-pipx install .
+pipx install . --force
 ```
 
 # Edit file .autrc with below command;
