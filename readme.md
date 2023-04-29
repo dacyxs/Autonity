@@ -194,12 +194,17 @@ docker run --rm ghcr.io/autonity/autonity:latest version
 
 # Setup the Autonity Utility Tool (aut)
 ```
-apt install pipx
+sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
+wget https://www.python.org/ftp/python/3.9.6/Python-3.9.6.tgz
+tar -xf Python-3.9.6.tgz
+cd Python-3.9.6/
+./configure --enable-optimizations
+sudo make altinstall
+pip install pipx
 apt install python3-pip
 python3 -m pip install --user pipx
 python3 -m pipx ensurepath
 python3 -m pip install --user --upgrade pipx
-apt install python3.8-venv
 ```
 
 # We have to reboot in order to run pipx command. 
@@ -277,7 +282,7 @@ screen -r node
 ```
 aut node info
 ```
-
+ 
 # Get the block number:
 ```
 aut block height
