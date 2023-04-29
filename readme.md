@@ -261,6 +261,8 @@ mkdir autonity-chaindata
 # First create a new screen
 ```
 apt install screen
+```
+```
 screen -S node
 ```
 
