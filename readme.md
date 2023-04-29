@@ -238,9 +238,7 @@ sudo reboot
 # Then download aut 
 
 ```
-git clone https://github.com/autonity/aut.git
-cd aut
-pipx install . --force
+sudo pipx install git+https://github.com/autonity/aut.git
 ```
 
 # Edit file .autrc with below command;
