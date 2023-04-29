@@ -220,9 +220,6 @@ apt install python3-pip
 pip install pipx
 ```
 ```
-apt install python3-pip
-```
-```
 python3 -m pip install --user pipx
 ```
 ```
