@@ -214,7 +214,7 @@ cd Python-3.9.6/
 sudo make altinstall
 ```
 ```
-apt install pip install pipx
+apt install python3-pip
 ```
 ```
 pip install pipx
