@@ -75,6 +75,14 @@ Confirm the validator details using:
 ```
 aut validator info --validator $VALIDATOR
 ```
+
+## Step 5. Create new keyfile from nodekey to sign new message validator onboarded. Second step change newkeyfilename with the filename created by first step below. Use created signature in the form.
+```
+aut account import-private-key autonity-chaindata/autonity/nodekey
+```
+  ```
+  aut account sign-message "validator onboarded" --keyfile .autonity/keystore/<newkeyfilename>
+  ```
   
 Validator registration form
 https://game.autonity.org/incentive-game-forms-frontend/validator.html
