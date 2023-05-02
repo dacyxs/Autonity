@@ -23,22 +23,14 @@ Note that if a validator is onboarded before the Round start time the 50 points 
 # Step 1. Generate a cryptographic proof of node ownership 
 This must be performed on the host machine running the Autonity Go Client, using the autonity genEnodeProof command:<br>
 <TREASURY_ACCOUNT_ADDRESS> should be changed with your account address <br>
-If you already followed my previous documentation you can skip to next code.
+Get your signature hex with below command
 
 ```
 SIGN_ADDR=$(autonity genEnodeProof --nodekey autonity-chaindata/autonity/nodekey <TREASURY_ACCOUNT_ADDRESS> | awk '{print $3}')
 ```
-
-This code will be enough to get signature text.
-<TREASURY_ACCOUNT_ADDRESS> should be changed with your account address <br>
-
 ```
-docker run -t -i --volume $(pwd)/autonity-chaindata:/autonity-chaindata --name autonity-proof --rm ghcr.io/autonity/autonity:latest genEnodeProof --nodekey ./autonity-chaindata/autonity/nodekey <TREASURY_ACCOUNT_ADDRESS>
+echo "Signature Address: " $SIGN_ADDR
 ```
-
-You should see something like this(We will use signature text later. Be sure to save it):
-
-![image](https://user-images.githubusercontent.com/106930902/233868401-7b939b16-1a79-4382-9140-78cbc54483ba.png)
 
 # Step 2. Determine the validator enode and address 
 ```
@@ -49,8 +41,9 @@ echo $ENODEURL
 ```
 The url is returned in the admin_enode field with echo line.
 ```
-aut validator compute-address $ENODEURL
+VALIDATOR=$(aut validator compute-address $ENODEURL)
 ```
+
 Make a note of this identifier that return to you. This is the unique code for your validator. 
 ![image](https://user-images.githubusercontent.com/106930902/233868590-7a9c2c15-a421-4837-993c-7d87bde03b2e.png)
 
@@ -60,8 +53,10 @@ Make a note of this identifier that return to you. This is the unique code for y
 <PROOF>: the proof of enode ownership generated in Step 1.<br>
 
 ```
-aut validator register <ENODE_URL> <PROOF> | aut tx sign - | aut tx send -
+REGS_VALI=$(aut validator register $ENODEURL $SIGN_ADDR | aut tx sign - | aut tx send -)
 ```
+```
+echo "Validator Registration TX : " $REGS_VALI
 
 Once the transaction is finalized (use aut tx wait <txid> to wait for it to be included in a block and return the status), the node is registered as a validator in the active state. It will become eligible for selection to the consensus committee once stake has been bonded to it.
 
@@ -72,7 +67,7 @@ aut validator list
   
 Confirm the validator details using:
   
-  aut validator info --validator 0x49454f01a8F1Fbab21785a57114Ed955212006be
+  aut validator info --validator $VALIDATOR
 
   
   Validator registration form
