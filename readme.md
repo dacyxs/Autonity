@@ -231,6 +231,9 @@ python3 -m pipx ensurepath
 ```
 python3 -m pip install --user --upgrade pipx
 ```
+```
+apt install python3.8-venv
+```
 
 # We have to reboot in order to run pipx command. 
 
