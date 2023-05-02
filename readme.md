@@ -103,13 +103,19 @@ gcc --version
 ## Installing the Docker image
 ```
 sudo apt install docker.io -y
+```
+```
 sudo systemctl enable --now docker
+```
+```
 systemctl restart docker.service
 ```
 
 ## Once the installation is complete, start the Docker service and enable it to start at boot:
 ```
 sudo systemctl start docker
+```
+```
 sudo systemctl enable docker
 ```
 
