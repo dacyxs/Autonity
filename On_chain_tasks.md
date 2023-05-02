@@ -75,6 +75,8 @@ aut validator info --validator $VALIDATOR
 Validator registration form
 https://game.autonity.org/incentive-game-forms-frontend/validator.html
   
-  
+# Follow me @
+https://twitter.com/Dacxys
+
   
   
