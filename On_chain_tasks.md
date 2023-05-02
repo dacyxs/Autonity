@@ -19,6 +19,10 @@ Points will be allocated daily, after 00:00:00 UTC. Per-task and overall scorebo
 
 Note that if a validator is onboarded before the Round start time the 50 points earned for registration will show on the scoreboard. Points for the rest of the task will only be scored between the Round’s start and end date time. <br>
 
+## In order to continue your current block have to be equal to highestBlock
+
+![image](https://user-images.githubusercontent.com/106930902/235779105-e9e30aa4-e855-44e7-8c79-aecc4c72b775.png)
+
 
 # Step 1. Generate a cryptographic proof of node ownership 
 This must be performed on the host machine running the Autonity Go Client, using the autonity genEnodeProof command:<br>
