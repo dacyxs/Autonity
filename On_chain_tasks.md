@@ -57,7 +57,8 @@ REGS_VALI=$(aut validator register $ENODEURL $SIGN_ADDR | aut tx sign - | aut tx
 ```
 ```
 echo "Validator Registration TX : " $REGS_VALI
-
+```
+  
 Once the transaction is finalized (use aut tx wait <txid> to wait for it to be included in a block and return the status), the node is registered as a validator in the active state. It will become eligible for selection to the consensus committee once stake has been bonded to it.
 
 # Step 4. Confirm registration
