@@ -338,7 +338,7 @@ https://faucet.autonity.org/
 https://game.autonity.org/incentive-game-forms-frontend/registration.html
 
 
-# Continue to create Validator;
+# Continue to create Validator after you registered for the game;
 https://github.com/dacyxs/Autonity/blob/main/On_chain_tasks.md
 
 # Original document: 
