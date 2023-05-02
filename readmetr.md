@@ -1,44 +1,47 @@
-<h1 align="center"> Autonity - Piccadilly Games R2 Guide </h1>
+<h1 align="center"> Autonity - Piccadilly Games R2 Rehber </h1>
 
 ![image](https://user-images.githubusercontent.com/106930902/233866088-85068fd1-a996-499e-9737-51cab182046b.png)
 
-Başlangıç Zamanı: 24 Nisan 2023 00:00:00 UTC<br>
+Başlangıç saati: April 24th 2023 00:00:00 UTC<br>
 Süre: 4 hafta<br>
 Tema: Node infrastructure<br>
-Görevler hakkında daha fazla bilgi edinmek için ziyaret edin: https://game.autonity.org/round-2/<br></h1>
+Görevler hakkında daha fazla bilgi almak için şu adresi ziyaret edin: https://game.autonity.org/round-2/<br></h1>
 
-## Gereksinimler
+#You can see English Guide @ https://github.com/dacyxs/Autonity/blob/main/readme.md
 
-# Donanım
 
-Autonity Go İstemci düğümü çalıştırmak için, aşağıdaki minimum özelliklere sahip bir ana makine (fiziksel veya sanal) kullanmanızı öneririz:
+# Gereksinimler
 
-Minimum Gereksinimler	
-OS	Ubuntu 20.04 LTS	<br>
-CPU	3.10 GHz with 8 CPU’s<br>
-RAM	8GB	<br>
-Storage	1024GB free storage for full nodes and Validators<br>
+## Donanım
 
-# Network 
-Sabit IP'li halka açık bir internet bağlantısı gereklidir. Aşağıdakilerde gelen trafiğe izin verilmelidir:
+Bir Autonity Go Client düğümünü çalıştırmak için, aşağıdaki minimum özelliklere sahip bir ana makine (fiziksel veya sanal) kullanılması öneriliyor:
 
-TCP, UDP 30303 düğüm p2p (DEVp2p) iletişimi için.<br>
-TCP 8545 düğüme http RPC bağlantıları yapmak için.<br>
-TCP 8546 düğüme WebSocket RPC bağlantıları yapmak için.<br>
-TCP 6060 Autonity metriklerini dışa aktarmak için (önerilir ama zorunlu değil)<br>
+Requirement	At least	Recommended
+OS	Ubuntu 20.04 LTS	Ubuntu 20.04 LTS
+CPU	3.10 GHz with 8 CPU’s	3.10 GHz with 16 CPU’s
+RAM	8GB	16GB
+Storage	1024GB free storage for full nodes and Validators	1024 GB free storage for full nodes and validators
 
-Aşağıdaki komutu çalıştırarak portun zaten açık olup olmadığını kontrol edin ( <port_number> yerine kontrol etmek istediğiniz portun numarasını yazın.):<br>
+## Network 
+Statik IP ile halka açık bir internet bağlantısı gereklidir. Aşağıdaki alanlarda gelen trafiğe izin verilmelidir:
+
+TCP, UDP 30303 for node p2p (DEVp2p) communication.
+TCP 8545 to make http RPC connections to the node.
+TCP 8546 to make WebSocket RPC connections to the node.
+TCP 6060 to export Autonity metrics (recommended but not required)
+
+Aşağıdaki komutu çalıştırarak bağlantı noktasının zaten açık olup olmadığını kontrol edin(<port_number> öğesini kontrol etmek istediğiniz bağlantı noktasının numarasıyla değiştirin.):<br>
 sudo netstat -tuln | grep <port_number><br>
 
-Eğer port zaten açık değilse, iptables kullanarak güvenlik duvarı ayarlarını değiştirerek açabilirsiniz. Örneğin, HTTP trafiği için 80 portunu açmak için aşağıdaki komutu çalıştırabilirsiniz:<br>
+Port zaten açık değilse, iptables kullanarak güvenlik duvarı ayarlarını değiştirerek açabilirsiniz. Örneğin, HTTP trafiği için 80 numaralı bağlantı noktasını açmak üzere aşağıdaki komutu çalıştırabilirsiniz:<br>
 sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT<br>
 
-Eğer ufw (Uncomplicated Firewall) gibi bir güvenlik duvarı yönetim aracınız varsa, portu açmak için bunu kullanabilirsiniz. Örneğin, ufw kullanarak HTTP trafiği için 80 portunu açmak için aşağıdaki komutları çalıştırabilirsiniz:<br>
+Yüklü ufw (Karmaşık Olmayan Güvenlik Duvarı) gibi bir güvenlik duvarı yönetim aracınız varsa, bunun yerine bağlantı noktasını açmak için kullanabilirsiniz. Örneğin, ufw kullanarak HTTP trafiği için 80 numaralı bağlantı noktasını açmak için aşağıdaki komutları çalıştırabilirsiniz:<br>
 sudo ufw allow 80/tcp<br>
 sudo ufw reload<br>
 
-Son olarak, değişikliklerin etkili olması için portu kullanan hizmetleri yeniden başlatmanız gerekebilir. Örneğin, HTTP trafiği için 80 portunu açtıysanız, web sunucunuzu yeniden başlatmanız gerekir.<br>
-İlgili tüm portları açmak için aşağıdaki kod parçacığını çalıştırabilirsiniz;<br>
+Son olarak, değişikliklerin etkili olması için bağlantı noktasını kullanan tüm hizmetleri yeniden başlatmanız gerekebilir. Örneğin, HTTP trafiği için 80 numaralı bağlantı noktasını açtıysanız, web sunucunuzu yeniden başlatmanız gerekir.<br>
+İlgili tüm portları açmak için aşağıdaki snippet'i çalıştırabilirsiniz;<br>
 ```
 sudo iptables -A INPUT -p tcp --dport 30303 -j ACCEPT
 sudo iptables -A INPUT -p udp --dport 30303 -j ACCEPT
@@ -56,22 +59,22 @@ sudo ufw allow 22/tcp
 sudo ufw reload
 ```
 
-# Sunucuyu Güncelleme
+## Sunucuyu Güncelle
 ```
 sudo apt-get update && sudo apt-get upgrade
 ```
 
-# Apt'nin HTTPS üzerinden bir depoyu kullanmasına izin vermek için gerekli paketleri yükleyin:
+## Apt'nin HTTPS üzerinden bir havuz kullanmasına izin vermek için gerekli paketleri kurun:
 ```
 sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
 ```
 
-# git yükleyin
+## install git 
 ```
 sudo apt-get install git
 ```
 
-# golang yükleyin
+## install golang
 ```
 wget https://golang.org/dl/go1.17.4.linux-amd64.tar.gz
 ```
@@ -88,7 +91,7 @@ source ~/.profile
 go version
 ```
 
-# c compiler yükleyin
+## install c compiler
 ```
 sudo apt-get install build-essential
 ```
@@ -97,30 +100,35 @@ gcc --version
 ```
 
 
-# Docker image yükleyin
+## Installing the Docker image
 ```
 sudo apt install docker.io -y
+```
+```
 sudo systemctl enable --now docker
+```
+```
 systemctl restart docker.service
 ```
 
-# Kurulum tamamlandığında, Docker hizmetini başlatın ve başlangıçta başlaması için etkinleştirin:
+## Kurulum tamamlandıktan sonra Docker hizmetini başlatın ve açılışta başlamasını sağlayın:
 ```
 sudo systemctl start docker
+```
+```
 sudo systemctl enable docker
 ```
 
-# Hello-world konteynerini çalıştırarak Docker'ın doğru şekilde kurulduğunu doğrulayın:
+## Merhaba dünya kapsayıcısını çalıştırarak Docker'ın doğru yüklendiğini doğrulayın:
 ```
 sudo docker run hello-world
 ```
 
-# Log dosyalarının boyutunu sınırlamak için, /etc/docker/daemon.json dosyasını açın. 
+## Günlük dosyalarının boyutunu sınırlamak için /etc/docker/daemon.json dosyasına aşağıdakini ekleyin
 
 ```
 nano /etc/docker/daemon.json
 ```
-# Aşağıdakileri ekleyin, daha sonra CTRL + X ve Y basarak kaydedin ve çıkış yapın. 
 ```
 {
   "log-driver": "json-file",
@@ -130,37 +138,43 @@ nano /etc/docker/daemon.json
   }
 }
 ```
+Kaydetmek ve çıkmak için CTRL + X Sonra Y tuşlarına basın.
 
-
-# Değişikliğin yansıtılması için Docker hizmetini yeniden başlatın:
+## Değişikliğin yansıtıldığından emin olmak için Docker hizmetini yeniden başlatın:
 
 ```
 sudo systemctl restart docker
 ```
 
-# En son autonity sürümünü indirin.
+## En son sürümü indirin.
 ```
 wget https://github.com/autonity/autonity/releases/download/v0.10.1/autonity-linux-amd64-0.10.1.tar.gz
 ```
 
-# İndirme tamamlandıktan sonra dosyayı çıkarın.
+## İndirme işlemi tamamlandıktan sonra dosyayı çıkartın.
 ```
 tar -xzvf autonity-linux-amd64-0.10.1.tar.gz
 ```
 
-# (İsteğe bağlı) İkili dosyayı /usr/local/bin klasörüne veya PATH'deki başka bir konuma kopyalayın, böylece tüm kullanıcılar tarafından erişilebilir hale gelir:
+## (İsteğe bağlı) İkili dosyayı /usr/local/bin konumuna kopyalayın, böylece tüm kullanıcılar veya PATH'nizdeki başka bir konum tarafından erişilebilir:
+```
+cd build/bin
+```
 ```
 sudo cp -r autonity /usr/local/bin/autonity
 ```
+```
+cd
+```
 
 
-# Github Konteyner Kaydından Autonity Go İstemci imajını çekin:
+## Autonity Go Client görüntüsünü Github Container Registry'den çekin:
 
 ```
 docker pull ghcr.io/autonity/autonity:latest
 ```
 
-# Autonity Docker imajlarının doğruluğunu resmi imaj özetleriyle doğrulayın. Çıktı şu şekilde olmalıdır.
+## Autonity Docker görüntülerinin gerçekliğini resmi görüntü özetlerine göre doğrulayın. Çıktı aşağıdaki gibi olmalıdır.
 ```
 docker images --digests ghcr.io/autonity/autonity
 ```
@@ -168,50 +182,75 @@ docker images --digests ghcr.io/autonity/autonity
 ![image](https://user-images.githubusercontent.com/106930902/233865723-cde2fe5d-88bf-4b58-9a3b-f591a81ae3d0.png)
 
 
-# Kurulumu doğrulayın. Aşağıdaki çıktıyı alacaksınız;
+## Kurulumu doğrulayın. Aşağıdaki çıktıyı alacaksınız;
 ```
 ./autonity version
 ```
-# Kurulumu doğrulayın.Aşağıdaki çıktıyı alacaksınız;
-Autonity<br>
-Version: 0.10.1<br>
-Architecture: amd64<br>
-Protocol Versions: [66]<br>
-Go Version: go1.18.2<br>
-Operating System: linux<br>
-GOPATH=<br>
-GOROOT=/usr/local/go<br>
 
-# Docker kullanılıyorsa, imajın kurulumu şununla doğrulanabilir:
+Autonity
+Version: 0.10.1
+Architecture: amd64
+Protocol Versions: [66]
+Go Version: go1.18.2
+Operating System: linux
+GOPATH=
+GOROOT=/usr/local/go
+
+## Docker kullanılıyorsa görüntünün kurulumu şu şekilde doğrulanabilir:
 ```
 docker run --rm ghcr.io/autonity/autonity:latest version
 ```
 
 
 
-# Autonity Yardımcı Aracını (aut) Ayarlayın
+## Autonity Utility Tool'u Kurun (aut)
 ```
-apt install pipx
+sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
+```
+```
+wget https://www.python.org/ftp/python/3.9.6/Python-3.9.6.tgz
+```
+```
+tar -xf Python-3.9.6.tgz
+```
+```
+cd Python-3.9.6/
+```
+```
+./configure --enable-optimizations
+```
+```
 apt install python3-pip
+```
+```
+pip install pipx
+```
+```
 python3 -m pip install --user pipx
+```
+```
 python3 -m pipx ensurepath
+```
+```
 python3 -m pip install --user --upgrade pipx
+```
+```
 apt install python3.8-venv
 ```
 
-# Pipx komutunu çalıştırmak için sunucuyu aşağıdaki kod ile yeniden başlatmamız gerekiyor. (Aynı sunucuya kurulu başka bir işlem gerçekleştiriyorsanız. İşlemlerinizin etkilenmediğine emin olunuz!)
+## Pipx komutunu çalıştırmak için yeniden başlatmamız gerekiyor.
 
 ```
 sudo reboot
 ```
 
-# Daha sonra aut'u indirin
+## Ardından aut'u indirin
 
 ```
-pipx install git+https://github.com/autonity/aut.git
+sudo pipx install git+https://github.com/autonity/aut.git
 ```
 
-# .autrc dosyasını aşağıdaki komutla düzenleyin;
+## .autrc dosyasını aşağıdaki komutla düzenleyin;
 
 ```
 nano /root/.autrc
@@ -222,18 +261,19 @@ nano /root/.autrc
 rpc_endpoint = https://rpc1.piccadilly.autonity.org/
 ```
 
-# Autonity'u çalıştırın (ikili veya kaynak kod yüklemesi)
+## Autonity'yi çalıştırın (ikili veya kaynak kodu yüklemesi)
 
 ```
 mkdir autonity-chaindata
 ```
 
-# İlk olarak yeni bir ekran oluşturun.
+## İlk önce yeni bir ekran oluşturun
 ```
 apt install screen
+```
+```
 screen -S node
 ```
-# Daha sonra aşağıdaki komutu girerek node'u çalıştırın. <IP_ADDRESS> bölümünü kendi makine IP'niz ile değiştirmeniz gerekmektedir. --piccadilly yazan bölüm testnet adı değişirse değiştirilmesi gerekir. R2 süresince aynı kalabilir. Screen içerisinden CTRL + C kullanarak çıkış yapmayın, CTRL + A + D ile çıkış yapın. Yoksa node'unuz duracaktır. 
 
 ```
 docker run \
@@ -259,63 +299,69 @@ docker run \
         --nat extip:<IP_ADDRESS>
 ```
 
+## Burada: <IP_ADDRESS>, düğümün curl ifconfig.me ile belirlenebilen ana bilgisayar IP Adresidir.
+--piccadilly, düğümün Piccadilly tesnet'i kullanacağını belirtir. Diğer tesnet'ler için uygun bayrağı kullanın (örneğin, --bakerloo).
 
-# Düğüm günlüklerine geri dönmek için aşağıdaki kodu girmeniz gerekiyor:
+CTRL + AND ile çıkın ( CTRL + C kullanmayın)
+
+## düğüm günlüklerine geri dönmek için aşağıdaki kodu girebilirsiniz:
 ```
 screen -r node
 ```
 
-# Aşağıdaki kodu yazabiliyorsanız, kurulumunuz tamamlanmıştır.
+## Aşağıdaki kodu yazabiliyorsanız kurulumunuz tamamlanmıştır.
 ```
 aut node info
 ```
-
-#   Blok numarası sorgulamak için aşağıdaki kodu yazabilirsiniz.
+ 
+## Blok numarasını almak isterseniz:
 ```
 aut block height
 ```
 
-# Hesabınızda bulunan bakiyeyi kontrol etmek için aşağıdaki kod kullanılabilir. <_addr>'yi değiştirmeyi unutmayın.
+## Bir hesabın otomatik bakiyesini kontrol etmek isterseniz:
 ```
 aut account balance <_addr>
 ```
 
-# Hesabınızda bulunan newton bakiyeyi kontrol etmek için aşağıdaki kod kullanılabilir. <_addr>'yi değiştirmeyi unutmayın.
+## Bir hesabın newton bakiyesini kontrol etmek isterseniz(newton validatorluk sonucu gelmeye başlayacak):
 ```
 aut account balance --ntn <_addr>
 ```
 
-# Aut kullanarak hesap oluşturun. Bu, anahtar dosyası oluşturacak ve size adresinizi verecektir.
+## aut kullanarak hesap oluşturun. Bu, anahtar dosyası oluşturacak ve size adresinizi verecektir. 
 ```
 aut account new
 ```
 
-# Daha sonra özel anahtarı almak için aşağıdaki kodla mesajı imzalamanız gerekiyor. Dosya adını kendi dosya adınızla değiştirin.
+##Daha sonra private key almak için aşağıdaki kod ile formdaki mesajı imzalamamız gerekiyor. Dosya adını kendi dosya adınızla değiştirin.
 ```
-aut account sign-message "I have read and agree to comply with the Piccadilly Circus Games Competition Terms and Conditions published on IPFS with CID QmVghJVoWkFPtMBUcCiqs7Utydgkfe19wkLunhS5t57yEu" --keyfile /root/.autonity/keystore/dosyaadı
+aut account sign-message "I have read and agree to comply with the Piccadilly Circus Games Competition Terms and Conditions published on IPFS with CID QmVghJVoWkFPtMBUcCiqs7Utydgkfe19wkLunhS5t57yEu" --keyfile /root/.autonity/keystore/<dosyaadı>
 ```
 
-# Faucet Aracılığı ile hesabınıza test token almak için aşağıdaki linki kullanın.
+## Fund the account
 https://faucet.autonity.org/
 ![image](https://user-images.githubusercontent.com/106930902/233856072-0cbeafb5-bd48-4b1a-b092-0a5d2c458346.png)
 
-# Aşağıdaki form aracılığı ile kayıt yaptırmanız gerekecektir. 
+## Aşağıdaki linkten oyuna kayıt olun;
 https://game.autonity.org/incentive-game-forms-frontend/registration.html
 
 
-# Original document: 
+## Oyuna kaydolduktan sonra Validator oluşturmaya devam edin;
+https://github.com/dacyxs/Autonity/blob/main/On_chain_tasks.md
+
+## Orijinal document: 
 https://docs.autonity.org/
 https://game.autonity.org/
 
-# Official links of the project: 
+## Projenin resmi linkleri:
 https://discord.gg/autonity
 https://twitter.com/autonity_
 https://autonity.org/
 
-# Block Explorer
+## Block Explorer
 https://piccadilly.autonity.org/
 
-# Follow me @
+## Follow me @
 https://twitter.com/Dacxys
-
 
