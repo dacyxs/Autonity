@@ -67,12 +67,13 @@ aut validator list
 ```
   
 Confirm the validator details using:
-  
-  aut validator info --validator $VALIDATOR
 
+```
+aut validator info --validator $VALIDATOR
+```
   
-  Validator registration form
-  https://game.autonity.org/incentive-game-forms-frontend/validator.html
+Validator registration form
+https://game.autonity.org/incentive-game-forms-frontend/validator.html
   
   
   
