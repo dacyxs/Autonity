@@ -19,12 +19,12 @@ Points will be allocated daily, after 00:00:00 UTC. Per-task and overall scorebo
 
 Note that if a validator is onboarded before the Round start time the 50 points earned for registration will show on the scoreboard. Points for the rest of the task will only be scored between the Round’s start and end date time. <br>
 
-## In order to continue your current block have to be equal to highestBlock
+# In order to continue your current block have to be equal to highestBlock
 
 ![image](https://user-images.githubusercontent.com/106930902/235779105-e9e30aa4-e855-44e7-8c79-aecc4c72b775.png)
 
 
-# Step 1. Generate a cryptographic proof of node ownership 
+## Step 1. Generate a cryptographic proof of node ownership 
 This must be performed on the host machine running the Autonity Go Client, using the autonity genEnodeProof command:<br>
 <TREASURY_ACCOUNT_ADDRESS> should be changed with your account address <br>
 Get your signature hex with below command
@@ -36,7 +36,7 @@ SIGN_ADDR=$(autonity genEnodeProof --nodekey autonity-chaindata/autonity/nodekey
 echo "Signature Address: " $SIGN_ADDR
 ```
 
-# Step 2. Determine the validator enode and address 
+## Step 2. Determine the validator enode and address 
 ```
 ENODEURL=$(aut node info -r http://127.0.0.1:8545 | grep enode | awk '{print $2}' | tr -d ,'"')
 ```
@@ -51,7 +51,7 @@ VALIDATOR=$(aut validator compute-address $ENODEURL)
 Make a note of this identifier that return to you. This is the unique code for your validator. 
 ![image](https://user-images.githubusercontent.com/106930902/233868590-7a9c2c15-a421-4837-993c-7d87bde03b2e.png)
 
-# Step 3. Submit the registration transaction. 
+## Step 3. Submit the registration transaction. 
 
 <ENODE_URL>: the enode url returned in Step 2.<br>
 <PROOF>: the proof of enode ownership generated in Step 1.<br>
@@ -65,7 +65,7 @@ echo "Validator Registration TX : " $REGS_VALI
   
 Once the transaction is finalized (use aut tx wait <txid> to wait for it to be included in a block and return the status), the node is registered as a validator in the active state. It will become eligible for selection to the consensus committee once stake has been bonded to it.
 
-# Step 4. Confirm registration
+## Step 4. Confirm registration
 ```  
 aut validator list
 ```
