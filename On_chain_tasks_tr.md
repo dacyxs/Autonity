@@ -75,6 +75,7 @@ Aşağıdakileri kullanarak doğrulayıcı ayrıntılarını kontrol edebilirsin
 ```
 aut validator info --validator $VALIDATOR
 ```
+## Adım 5. validator onboarded mesajını imzalamak için nodekey'den yeni bir anahtar dosyası oluşturun. İkinci adım newkeyfilename öğesini aşağıdaki ilk adımda oluşturulan dosya adıyla değiştirin. Formda bu işlemler ile oluşturulan imzayı kullanın.
   
 Validator kayıt formu
 https://game.autonity.org/incentive-game-forms-frontend/validator.html
