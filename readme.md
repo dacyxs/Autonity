@@ -157,6 +157,9 @@ cd build/bin
 ```
 sudo cp -r autonity /usr/local/bin/autonity
 ```
+```
+cd
+```
 
 
 # Pull the Autonity Go Client image from the Github Container Registry:
