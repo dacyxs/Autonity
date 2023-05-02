@@ -22,12 +22,11 @@ Note that if a validator is onboarded before the Round start time the 50 points 
 
 # Step 1. Generate a cryptographic proof of node ownership 
 This must be performed on the host machine running the Autonity Go Client, using the autonity genEnodeProof command:<br>
-<NODE_KEY_PATH> should be changed with the node key path that created in previous steps. <br>
 <TREASURY_ACCOUNT_ADDRESS> should be changed with your account address <br>
 If you already followed my previous documentation you can skip to next code.
 
 ```
-autonity genEnodeProof --nodekey <NODE_KEY_PATH> <TREASURY_ACCOUNT_ADDRESS>
+SIGN_ADDR=$(autonity genEnodeProof --nodekey autonity-chaindata/autonity/nodekey <TREASURY_ACCOUNT_ADDRESS> | awk '{print $3}')
 ```
 
 This code will be enough to get signature text.
@@ -43,11 +42,14 @@ You should see something like this(We will use signature text later. Be sure to 
 
 # Step 2. Determine the validator enode and address 
 ```
-aut node info
+ENODEURL=$(aut node info -r http://127.0.0.1:8545 | grep enode | awk '{print $2}' | tr -d ,'"')
 ```
-The url is returned in the admin_enode field.
 ```
-aut validator compute-address <admin_enode>
+echo $ENODEURL
+```
+The url is returned in the admin_enode field with echo line.
+```
+aut validator compute-address $ENODEURL
 ```
 Make a note of this identifier that return to you. This is the unique code for your validator. 
 ![image](https://user-images.githubusercontent.com/106930902/233868590-7a9c2c15-a421-4837-993c-7d87bde03b2e.png)
