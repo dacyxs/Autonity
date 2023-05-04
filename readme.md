@@ -362,6 +362,9 @@ https://autonity.org/
 ## Block Explorer
 https://piccadilly.autonity.org/
 
+## Dashboard
+https://validators.game.autonity.org/dashboards/?query=
+
 ## Follow me @
 https://twitter.com/Dacxys
 
