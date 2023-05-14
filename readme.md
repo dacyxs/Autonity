@@ -250,7 +250,7 @@ sudo reboot
 sudo pipx install git+https://github.com/autonity/aut.git
 ```
 
-## Edit file .autrc with below command;
+## Edit file .autrc with below command. Change keystorenameofyours with your info;
 
 ```
 nano /root/.autrc
