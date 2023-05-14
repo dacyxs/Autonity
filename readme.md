@@ -259,6 +259,8 @@ nano /root/.autrc
 ```
 [aut]
 rpc_endpoint = https://rpc1.piccadilly.autonity.org/
+nodekey=autonity-chaindata/autonity/nodekey
+keyfile=.autonity/keystore/keystorenameofyours
 ```
 
 ## Run Autonity (binary or source code install)
