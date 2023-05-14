@@ -250,7 +250,7 @@ sudo reboot
 sudo pipx install git+https://github.com/autonity/aut.git
 ```
 
-## .autrc dosyasını aşağıdaki komutla düzenleyin;
+## .autrc dosyasını aşağıdaki komutla düzenleyin. <keystorenameofyours> yerine lütfen kendi cüzdanınız ile düzenleyin;
 
 ```
 nano /root/.autrc
@@ -259,6 +259,8 @@ nano /root/.autrc
 ```
 [aut]
 rpc_endpoint = https://rpc1.piccadilly.autonity.org/
+nodekey=autonity-chaindata/autonity/nodekey
+keyfile=.autonity/keystore/<keystorenameofyours>
 ```
 
 ## Autonity'yi çalıştırın (ikili veya kaynak kodu yüklemesi)
