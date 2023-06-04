@@ -85,7 +85,7 @@ aut account import-private-key autonity-chaindata/autonity/nodekey
   aut account sign-message "validator onboarded" --keyfile .autonity/keystore/<newkeyfilename>
   ```
   
-Validator registration form
+Validator registration form(if you already participated to game2 you can skip this form.)
 https://game.autonity.org/incentive-game-forms-frontend/validator.html
   
 # Follow me @
