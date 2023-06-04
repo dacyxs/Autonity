@@ -87,7 +87,20 @@ aut account import-private-key autonity-chaindata/autonity/nodekey
   
 Validator registration form(if you already participated to game2 you can skip this form.)
 https://game.autonity.org/incentive-game-forms-frontend/validator.html
+
+## Step 6. Bond you NTN balance to your validator
   
+check you balance;
+```
+aut account balance --ntn <TREASURY_ACCOUNT_ADDRESS> 
+```  
+Bond your NTN to your validator. Your validator address is the address that we received in 2nd step which we already set dynamic value. Change <AMOUNT> with your balance.
+```
+aut validator bond --validator $VALIDATOR <AMOUNT> | aut tx sign - | aut tx send -
+```
+
+Note: If you detach from your session you dynamic values that set above will be reset. Therefore, you should follow same steps if you will face with any error.
+
 # Follow me @
 https://twitter.com/Dacxys
 
